@@ -847,6 +847,14 @@ situp[13][1] = 0;
 situp[14][1] = 0;
 }
 
-function Situp(agegroup, score) {
+function SitupScore2Point(agegroup, score) {
 	return situp[agegroup][score];
+}
+
+function SitupPoint2Score(agegroup, point) {
+	for( var i = 1; i <= 60; i++ )
+	{
+		if ( situp[agegroup][i] == point )
+			return i;
+	}
 }

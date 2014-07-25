@@ -12,11 +12,11 @@
 		<script src="js/jquery-2.0.3.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
 		<script src="js/fastclick.js"></script>
-		
+
 		<script src="js/pushup.js"></script>
 		<script src="js/running.js"></script>
 		<script src="js/situp.js"></script>
-
+		<script src="js/ippt.js"></script>
 		<script src="phonegap.js"></script>
 		<script>
 			document.addEventListener('deviceready', function() {
@@ -30,12 +30,69 @@
 			createPushupArray();
 			createRunningArray();
 			createSitupArray();
-			//alert(Pushup(1, 60))
-			//alert(Running(3,700));
-			//alert(Situp(3, 30));
+
 		</script>
+
+		<style>
+			.home-btn {
+				border-radius: 30% !important;
+				text-align: center;
+			}
+
+			.home-btn img {
+				width: 144px;
+				height: 144px;
+			}
+		</style>
 	</head>
 
-	<body></body>
+	<body>
+		<!-- Home Page -->
+		<section data-role="page" id="home-page" >
+			<div class="content" data-role="content">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"/><label>Point <i class="fa fa-arrow-right"></i> Score</label></a>
+					</div>
+					<div class="ui-block-b">
+						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
+					</div>
+				</div>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"/><label>Hello World</label></a>
+					</div>
+					<div class="ui-block-b">
+						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End of Home Page -->
+
+		<!-- Point to Score Page -->
+		<section data-role="page" id="ps-page">
+			<header class="page-header" data-role="header" data-theme="a" data-tap-toggle="false">
+				<a class="l-header-btn fastclick" data-rel="back" data-role="button" title="Home"><i class="fa fa-chevron-left"></i></a>
+				<h1>Point <i class="fa fa-arrow-right"></i> Score</h1>
+			</header>
+			<div class="content">
+				<div class="ui-grid-solo">
+					<div data-role="fieldcontain">
+						<label for="age">Text Input:</label>
+						<input type="number" name="age" min="1" max="60">
+					</div>
+				</div>
+
+				<div class="ui-grid-solo">
+					<div data-role="fieldcontain">
+						<label for="name">Sit Ups:</label>
+						<input type="range" name="slider" value="15" min="0" max="25" data-highlight="true" />
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
 
 </html>

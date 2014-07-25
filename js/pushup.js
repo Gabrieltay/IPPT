@@ -847,6 +847,14 @@ function createPushupArray() {
 	pushup[14][1] = 0;
 }
 
-function Pushup(agegroup, score) {
+function PushupScore2Point(agegroup, score) {
 	return pushup[agegroup][score];
+}
+
+function PushupPoint2Score(agegroup, point) {
+	for( var i = 1; i <= 60; i++ )
+	{
+		if ( pushup[agegroup][i] == point )
+			return i;
+	}
 }
