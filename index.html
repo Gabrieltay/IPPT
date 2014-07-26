@@ -30,7 +30,6 @@
 			createPushupArray();
 			createRunningArray();
 			createSitupArray();
-
 		</script>
 
 		<style>
@@ -43,32 +42,54 @@
 				width: 144px;
 				height: 144px;
 			}
+
+			.dispInline, .dispInlineLabel {
+				display: inline-block;
+				border-bottom-width: 0;
+				margin-left: 5px;
+			}
+			.dispInlineLabel {
+				min-width: 10%;
+			}
+			.dispInline {
+				min-width: 70%;
+			}
+			
+			.float-left {
+				float: left;
+			}	
+			.float-right {
+				float: right;
+			}
 		</style>
 	</head>
 
 	<body>
 		<!-- Home Page -->
+		<!--
 		<section data-role="page" id="home-page" >
-			<div class="content" data-role="content">
-				<div class="ui-grid-a">
-					<div class="ui-block-a">
-						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"/><label>Point <i class="fa fa-arrow-right"></i> Score</label></a>
-					</div>
-					<div class="ui-block-b">
-						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
-					</div>
-				</div>
+		<div class="content" data-role="content">
+		<div class="ui-grid-a">
+		<div class="ui-block-a">
+		<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick="calculatePts2Score();"> <img src="images/SVG/heart.svg"/><label>Point <i class="fa fa-arrow-right"></i> Score</label></a>
+		</div>
+		<div class="ui-block-b">
+		<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
+		</div>
+		</div>
 
-				<div class="ui-grid-a">
-					<div class="ui-block-a">
-						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"/><label>Hello World</label></a>
-					</div>
-					<div class="ui-block-b">
-						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
-					</div>
-				</div>
-			</div>
+		<div class="ui-grid-a">
+		<div class="ui-block-a">
+		<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"/><label>Hello World</label></a>
+		</div>
+		<div class="ui-block-b">
+		<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
+		</div>
+		</div>
+		</div>
 		</section>
+	-->
+		
 		<!-- End of Home Page -->
 
 		<!-- Point to Score Page -->
@@ -78,17 +99,43 @@
 				<h1>Point <i class="fa fa-arrow-right"></i> Score</h1>
 			</header>
 			<div class="content">
+				<div data-role="fieldcontain">
+					<div class="dispInlineLabel">
+						<label id="age-pts-label" class="" for="age">Your Age:</label>
+					</div>
+					<div class="dispInline">
+						<input id="age-pts-input" class="" type="number" name="age" min="1" max="60" value="30">
+					</div>
+				</div>
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain">
-						<label for="age">Text Input:</label>
-						<input type="number" name="age" min="1" max="60">
+						<label for="situp">Sit Ups Points:</label>
+						<input type="range" id="situp-pts-slider" class="pts-score-slider" name="slider" value="15" min="0" max="25" data-highlight="true" />
 					</div>
+					<div id="situp-score"></div>
 				</div>
 
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain">
-						<label for="name">Sit Ups:</label>
-						<input type="range" name="slider" value="15" min="0" max="25" data-highlight="true" />
+						<label for="pushup">Push Ups Points:</label>
+						<input type="range" id="pushup-pts-slider" class="pts-score-slider" name="slider" value="15" min="0" max="25" data-highlight="true" />
+					</div>
+					<div id="pushup-score"></div>
+				</div>
+
+				<div class="ui-grid-solo">
+					<div data-role="fieldcontain">
+						<label for="pushup">2.4Km Run Points:</label>
+						<input type="range" id="running-pts-slider"  class="pts-score-slider" name="slider" value="25" min="0" max="50" data-highlight="true" />
+					</div>
+					<div id="running-score"></div>
+				</div>
+				
+				<div class="ui-grid-solo">
+					<div data-role="fieldcontain">
+						<label class="float-left">Total Points: </label>
+						<label id="ps-total">100</label>
+						<label id="ps-award"></label>
 					</div>
 				</div>
 			</div>

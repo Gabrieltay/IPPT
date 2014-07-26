@@ -1,23 +1,55 @@
 var awards = {
-	FAIL : 0,
-	PASS : 1,
-	PASSPLUS : 2,
-	SILVER : 3,
-	GOLD : 4,
-	GOLDPLUS : 5
+	FAIL : "FAIL",
+	PASS : "PASS",
+	PASSPLUS : "PASS PLUS",
+	SILVER : "SILVER",
+	GOLD : "GOLD",
+	GOLDPLUS : "GOLD PLUS"
 };
+
+var agegroup = 0;
+var situppts = 0;
+var pushuppts = 0;
+var runningpts = 0;
+var pstotal = 0;
 
 var init = function() {
 	//alert(PushupScore2Point(1, 60))
 	//alert(RunningScore2Point(5,786));
 	//alert(SitupScore2Point(3, 30));
-	
+
 	//alert(PushupPoint2Score(5, 18))
 	//alert(SitupPoint2Score(5,13));
 	//alert(RunningPoint2Score(5,20));
+
+	$(".pts-score-slider").bind("change", function(event, ui) {
+		calculatePts2Score();
+	});
+
+	$('#age-pts-input').bind("change", function(event, ui) {
+		calculatePts2Score();
+	});
 }
 
 $(document).ready(init);
+
+function calculatePts2Score() {
+	agegroup = getAgeGroup(parseInt($("#age-pts-input").val()));
+
+	situppts = $("#situp-pts-slider").val();
+	$("#situp-score").text(SitupPoint2Score(agegroup, situppts));
+
+	pushuppts = $("#pushup-pts-slider").val();
+	$("#pushup-score").text(PushupPoint2Score(agegroup, pushuppts));
+
+	runningpts = $("#running-pts-slider").val();
+	$("#running-score").text(secondsToTimeString(RunningPoint2Score(agegroup, runningpts)));
+	
+	pstotal = parseInt(situppts) + parseInt(pushuppts) + parseInt(runningpts);
+	$('#ps-total').text(pstotal);
+	
+	$('#ps-award').text(getAward(pstotal));
+}
 
 function getAgeGroup(age) {
 	if (age < 22)
@@ -67,3 +99,14 @@ function getAward(points) {
 		return awards.FAIL;
 }
 
+function secondsToTimeString(seconds) {
+	var min = Math.floor(seconds / 60);
+	var sec = seconds - (min * 60);
+	return pad(min, 2) + ":" + pad(sec, 2);
+}
+
+function pad(n, width, z) {
+	z = z || '0';
+	n = n + '';
+	return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
