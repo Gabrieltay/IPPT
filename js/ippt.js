@@ -25,10 +25,10 @@ $(document).on('pagebeforechange', function() {
 	$(".pts-score-slider").change(function() {
 		calculatePts2Score();
 	});
-	
+	/*
 	$('#age-pts-input').change(function() {
 		calculatePts2Score();
-	});
+	});*/
 	
 	$(".score-pts-slider").change(function() {
 		calculateScore2Pts();
@@ -51,31 +51,6 @@ var init = function() {
 	createPushupArray();
 	createRunningArray();
 	createSitupArray();
-	populateSitupTable();
-
-	//alert(PushupScore2Point(1, 60))
-	//alert(RunningScore2Point(5,786));
-	//alert(SitupScore2Point(3, 30));
-
-	//alert(PushupPoint2Score(5, 18))
-	//alert(SitupPoint2Score(5,13));
-	//alert(RunningPoint2Score(5,20));
-
-	
-
-	
-
-	/*
-	 $(".pts-score-slider").bind("change", function(event, ui) {
-	 alert("sds")
-	 calculatePts2Score();
-	 });
-	 
-	$('#age-pts-input').bind("change", function(event, ui) {
-		calculatePts2Score();
-	});
-*/
-	
 }
 
 $(document).ready(init);

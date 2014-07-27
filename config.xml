@@ -47,5 +47,8 @@ version   = "1.0.0">
 	<!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
 	<preference name="DisallowOverscroll" 		  value="true"/>
 	
+	<preference name="StatusBarOverlaysWebView" value="false"/>
+	<gap:plugin name="com.phonegap.plugin.statusbar" />
+	
 	<access origin="*" />
 </widget>
