@@ -31,6 +31,20 @@
 		</script>
 
 		<style>
+			body {
+				background-color: #1f253d !important;
+			}
+
+			section {
+				background-color: #394264 !important;
+			}
+			header {
+				border-bottom: 0px solid #1f253d !important;
+			}
+			label {
+				color: #FFF;
+			}
+
 			.home-btn {
 				border-radius: 20% !important;
 				text-align: center;
@@ -66,10 +80,10 @@
 			td {
 				border: 0px solid black;
 			}
+			.situp-container .ui-slider-bg {
+				background: #e95d0e !important;
+			}
 
-			
-
-			
 		</style>
 	</head>
 
@@ -77,25 +91,25 @@
 		<!-- Home Page -->
 
 		<section data-role="page" id="home-page" >
-			<header class="page-header" data-role="header" data-theme="a" data-tap-toggle="false">
+			<header class="page-header" data-role="header" data-theme="i" data-tap-toggle="false">
 				<h1>IPPT Calculator</h1>
 			</header>
 			<div class="content" data-role="content">
 				<div class="ui-grid-a">
 					<div class="ui-block-a">
-						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="k" onclick="calculatePts2Score();"> <img src="images/SVG/heart.svg"/><label>Point <i class="fa fa-arrow-right"></i> Score</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="hh" onclick="calculatePts2Score();"> <img src="images/SVG/heart.svg"/><label>Point <i class="fa fa-arrow-right"></i> Score</label></a>
 					</div>
 					<div class="ui-block-b">
-						<a id="ps-btn" class="home-btn fastclick" href="#sp-page" data-role="button" data-rel="page" data-transition="flip" data-theme="k" onclick="calculateScore2Pts();"> <img src="images/SVG/heart.svg"><label>Score <i class="fa fa-arrow-right"></i> Point</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#sp-page" data-role="button" data-rel="page" data-transition="flip" data-theme="jj" onclick="calculateScore2Pts();"> <img src="images/SVG/heart.svg"><label>Score <i class="fa fa-arrow-right"></i> Point</label></a>
 					</div>
 				</div>
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a">
-						<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick="populateSitupTable();"> <img src="images/SVG/heart.svg"/><label>Hello World</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="kk" onclick="populateSitupTable();"> <img src="images/SVG/heart.svg"/><label>Summary</label></a>
 					</div>
 					<div class="ui-block-b">
-						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="ll" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
 					</div>
 				</div>
 			</div>
@@ -106,7 +120,7 @@
 		<!-- Point to Score Page -->
 
 		<section data-role="page" id="ps-page">
-			<header class="page-header" data-role="header" data-theme="a" data-tap-toggle="false">
+			<header class="page-header" data-role="header" data-theme="i" data-tap-toggle="false">
 				<a class="l-header-btn fastclick" data-rel="page" href="#home-page" data-role="button" data-transition="flip" title="Home"><i class="fa fa-chevron-left"></i></a>
 				<h1>Point <i class="fa fa-arrow-right"></i> Score</h1>
 			</header>
@@ -119,18 +133,21 @@
 						<input id="age-pts-input"  type="number" name="age" min="1" max="60" value="30">
 					</div>
 				</div>
-				<div class="ui-grid-solo">
+				<div class="ui-grid-solo situp-container">
 					<div data-role="fieldcontain">
 						<label for="situp">Sit Ups Points:</label>
-						<input type="range" id="situp-pts-slider" class="pts-score-slider" name="slider" value="15" min="0" max="25" data-highlight="true" />
+						<input type="range" id="situp-pts-slider" class="pts-score-slider" name="slider" data-highlight="true" value="15" min="0" max="25" data-highlight="true" />
 					</div>
-					<div id="situp-score"></div>
+					<div>
+						<img src="images/situp.png" width="44px">
+						<div id="situp-score"></div>
+					</div>
 				</div>
 
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain">
 						<label for="pushup">Push Ups Points:</label>
-						<input type="range" id="pushup-pts-slider" class="pts-score-slider" name="slider" value="15" min="0" max="25" data-highlight="true" />
+						<input type="range" id="pushup-pts-slider" class="pts-score-slider" name="slider" data-theme="pu" value="15" min="0" max="25" data-highlight="true" />
 					</div>
 					<div id="pushup-score"></div>
 				</div>
