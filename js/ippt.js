@@ -113,7 +113,7 @@ function populateRunningTable() {
 	$(".table").empty();
 	agegroupsum = getAgeGroup(parseInt($("#age-sum-input").val()));
 	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
-	for (var i = 510; i <= 1100; i++) {
+	for (var i = 510; i <= 1100; i+=10) {
 		$(".table").append('<tr><td>' + secondsToTimeString(i) + '</td><td>' + RunningScore2Point(agegroupsum, i) + '</td></tr>');
 	}
 }

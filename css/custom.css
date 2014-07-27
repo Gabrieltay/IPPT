@@ -1,4 +1,5 @@
-* {
+*:not(input[type=date],
+input[type=number], input[type=text]) {
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
