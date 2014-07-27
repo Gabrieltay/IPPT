@@ -117,19 +117,29 @@ function calculateScore2Pts() {
 }
 
 function populateSitupTable() {
+	$(".table").empty();
 	agegroupsum = getAgeGroup(parseInt($("#age-sum-input").val()));
-	$(".table-left").append('<tr><td>Score</td><td>Point</td></tr>');
-	$(".table-center").append('<tr><td>Score</td><td>Point</td></tr>');
-	$(".table-right").append('<tr><td>Score</td><td>Point</td></tr>');
+	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
+	for (var i = 60; i > 0; i--) {
+		$(".table").append('<tr><td>' + i + '</td><td>' + SitupScore2Point(agegroupsum, i) + '</td></tr>');
+	}
+}
 
-	for (var i = 60; i > 40; i--) {
-		$(".table-left").append('<tr><td>' + i + '</td><td>' + SitupScore2Point(agegroupsum, i) + '</td></tr>');
+function populatePushupTable() {
+	$(".table").empty();
+	agegroupsum = getAgeGroup(parseInt($("#age-sum-input").val()));
+	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
+	for (var i = 60; i > 0; i--) {
+		$(".table").append('<tr><td>' + i + '</td><td>' + PushupScore2Point(agegroupsum, i) + '</td></tr>');
 	}
-	for (var i = 40; i > 20; i--) {
-		$(".table-center").append('<tr><td>' + i + '</td><td>' + SitupScore2Point(agegroupsum, i) + '</td></tr>');
-	}
-	for (var i = 20; i > 0; i--) {
-		$(".table-right").append('<tr><td>' + i + '</td><td>' + SitupScore2Point(agegroupsum, i) + '</td></tr>');
+}
+
+function populateRunningTable() {
+	$(".table").empty();
+	agegroupsum = getAgeGroup(parseInt($("#age-sum-input").val()));
+	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
+	for (var i = 510; i <= 1100; i++) {
+		$(".table").append('<tr><td>' + secondsToTimeString(i) + '</td><td>' + RunningScore2Point(agegroupsum, i) + '</td></tr>');
 	}
 }
 

@@ -7,6 +7,7 @@
 		<!-- CSS -->
 		<link rel="stylesheet" href="css/jquery.mobile.flatui.css" />
 		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/custom.css">
 		<!-- JS -->
 		<script src="js/jquery-2.0.3.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
@@ -27,9 +28,6 @@
 				new FastClick($(".fastclick"));
 			}, false);
 
-			
-
-			
 		</script>
 
 		<style>
@@ -69,21 +67,9 @@
 				border: 0px solid black;
 			}
 
-			table {
-				width: 100%;
-				text-align: center;
-				border-collapse: collapse !important;
-				margin-left: 2px !important;
-				margin-right: 2px !important;
-				border-radius: 10px !important;
-				border: 2px solid black;
-			}
+			
 
-			.footer-containers {
-				position: absolute;
-				width: 100%;
-				bottom: 0;
-			}
+			
 		</style>
 	</head>
 
@@ -91,14 +77,16 @@
 		<!-- Home Page -->
 
 		<section data-role="page" id="home-page" >
-			<div class="content" data-role="content">
+			<header class="page-header" data-role="header" data-theme="a" data-tap-toggle="false">
 				<h1>IPPT Calculator</h1>
+			</header>
+			<div class="content" data-role="content">
 				<div class="ui-grid-a">
 					<div class="ui-block-a">
-						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick="calculatePts2Score();"> <img src="images/SVG/heart.svg"/><label>Point <i class="fa fa-arrow-right"></i> Score</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="k" onclick="calculatePts2Score();"> <img src="images/SVG/heart.svg"/><label>Point <i class="fa fa-arrow-right"></i> Score</label></a>
 					</div>
 					<div class="ui-block-b">
-						<a id="ps-btn" class="home-btn fastclick" href="#sp-page" data-role="button" data-rel="page" data-transition="slide" data-theme="k" onclick="calculateScore2Pts();"> <img src="images/SVG/heart.svg"><label>Score <i class="fa fa-arrow-right"></i> Point</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#sp-page" data-role="button" data-rel="page" data-transition="flip" data-theme="k" onclick="calculateScore2Pts();"> <img src="images/SVG/heart.svg"><label>Score <i class="fa fa-arrow-right"></i> Point</label></a>
 					</div>
 				</div>
 
@@ -119,7 +107,7 @@
 
 		<section data-role="page" id="ps-page">
 			<header class="page-header" data-role="header" data-theme="a" data-tap-toggle="false">
-				<a class="l-header-btn fastclick" data-rel="back" data-role="button" title="Home"><i class="fa fa-chevron-left"></i></a>
+				<a class="l-header-btn fastclick" data-rel="page" href="#home-page" data-role="button" data-transition="flip" title="Home"><i class="fa fa-chevron-left"></i></a>
 				<h1>Point <i class="fa fa-arrow-right"></i> Score</h1>
 			</header>
 			<div class="content">
@@ -231,36 +219,48 @@
 						<input id="age-sum-input" class="" type="number" name="age" min="1" max="60" value="30">
 					</div>
 				</div>
-				<div class="ui-grid-b">
-					<div class="ui-block-a">
-						<table class="table-left">
-
-						</table>
-					</div>
-					<div class="ui-block-b">
-						<table class="table-center">
-
-						</table>
-					</div>
-					<div class="ui-block-c">
-						<table class="table-right">
+				<div class="ui-grid-solo">
+					<div class="table-container">
+						<table class="table">
 
 						</table>
 					</div>
 				</div>
+				<br>
+				<br>
+				<br>
+				<!--
+				<div class="ui-grid-b">
+				<div class="ui-block-a">
+				<table class="table-left">
+
+				</table>
+				</div>
+				<div class="ui-block-b">
+				<table class="table-center">
+
+				</table>
+				</div>
+				<div class="ui-block-c">
+				<table class="table-right">
+
+				</table>
+				</div>
+				</div>
+				-->
 
 			</div>
 			<div class="footer-container" data-role="footer" data-position="fixed" data-fullscreen="true">
 				<div data-role="navbar" data-iconpos="top">
 					<ul>
 						<li>
-							<a id="home-btn" class="nav-btn fastclick" href="#home-page" data-rel="back"><i class="fa fa-home"></i></br>Home</a>
+							<a id="situp-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populateSitupTable();"><i class="fa fa-home"></i></br>Situp</a>
 						</li>
 						<li>
-							<a id="restart-btn" class="nav-btn fastclick" href="#" onclick="start();"><i class="fa fa-play"></i></br>Restart</a>
+							<a id="pushup-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populatePushupTable();"><i class="fa fa-play"></i></br>Pushup</a>
 						</li>
 						<li>
-							<a id="end-btn" class="nav-btn fastclick" data-role="button" data-rel="page" data-transition="slide" href="#result-page" onclick="complete();"><i class="fa fa-trophy"></i></br>End</a>
+							<a id="running-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populateRunningTable();"><i class="fa fa-trophy"></i></br>End</a>
 						</li>
 					</ul>
 				</div>

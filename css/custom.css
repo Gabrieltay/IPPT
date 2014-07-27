@@ -1,0 +1,50 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+  -webkit-highlight: none;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-backface-visibility: visible;
+}
+
+.table-container {
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid #999999;
+  border-radius: 14px !important;
+}
+.table-container table {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  border-collapse: collapse !important;
+  border-radius: 10px !important;
+}
+.table-container tr:last-child td:last-child {
+  border-bottom-right-radius: 14px;
+}
+.table-container tr:first-child td:first-child {
+  border-top-left-radius: 14px;
+}
+.table-container tr:first-child td:last-child {
+  border-top-right-radius: 14px;
+}
+.table-container tr:last-child td:first-child {
+  border-bottom-left-radius: 14px;
+}
+.table-container tr:nth-child(odd) {
+  background-color: #cccccc;
+}
+.table-container tr:nth-child(even) {
+  background-color: #ffffff;
+}
