@@ -101,7 +101,7 @@ function calculateScore2Pts() {
 
 function populateSitupTable() {
 	$(".table").empty();
-	agegroupsum = getAgeGroup(parseInt($("#age-sum-input").val()));
+	agegroupsum = getAgeGroup(parseInt($("#age-input").val()));
 	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
 	for (var i = 60; i > 0; i--) {
 		$(".table").append('<tr><td>' + i + '</td><td>' + SitupScore2Point(agegroupsum, i) + '</td></tr>');
@@ -110,7 +110,7 @@ function populateSitupTable() {
 
 function populatePushupTable() {
 	$(".table").empty();
-	agegroupsum = getAgeGroup(parseInt($("#age-sum-input").val()));
+	agegroupsum = getAgeGroup(parseInt($("#age-input").val()));
 	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
 	for (var i = 60; i > 0; i--) {
 		$(".table").append('<tr><td>' + i + '</td><td>' + PushupScore2Point(agegroupsum, i) + '</td></tr>');
@@ -119,7 +119,7 @@ function populatePushupTable() {
 
 function populateRunningTable() {
 	$(".table").empty();
-	agegroupsum = getAgeGroup(parseInt($("#age-sum-input").val()));
+	agegroupsum = getAgeGroup(parseInt($("#age-input").val()));
 	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
 	for (var i = 510; i <= 1100; i += 10) {
 		$(".table").append('<tr><td>' + secondsToTimeString(i) + '</td><td>' + RunningScore2Point(agegroupsum, i) + '</td></tr>');

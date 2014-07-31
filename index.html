@@ -47,6 +47,15 @@
 				position: relative;
 				width: 100%;
 			}
+			
+			.nav-btn img {
+				width: 30%;
+			}
+			
+			.home-btn label {
+				position: relative;
+				width: 100%;
+			}
 
 			.dispInline, .dispInlineLabel {
 				display: inline-block;
@@ -63,6 +72,12 @@
 			.time-slider input[type=number] {
 				display: none;
 			}
+			
+			.timeLabel {
+				z-index: 99 !important;
+				background: #FFFFFF !important;	
+			}
+			
 			td {
 				border: 0px solid black;
 			}
@@ -89,11 +104,11 @@
 				<div class="ui-grid-a">
 					<div class="ui-block-a">
 						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="hh" onclick="calculatePts2Score();"> 
-							<img src="images/situp.png"/> <label>Point <i class="fa fa-arrow-right"></i> Score</label> </a>
+							<img src="images/situp.png"/> <label>Points</label> </a><!-- <i class="fa fa-arrow-right"></i> Score</label> </a>-->
 					</div>
 					<div class="ui-block-b">
 						<a id="ps-btn" class="home-btn fastclick" href="#sp-page" data-role="button" data-rel="page" data-transition="flip" data-theme="jj" onclick="calculateScore2Pts();">
-							 <img src="images/pushup.png"><label>Score <i class="fa fa-arrow-right"></i> Point</label></a>
+							 <img src="images/pushup.png"><label>Scores</label></a><!-- <i class="fa fa-arrow-right"></i> Point</label></a>-->
 					</div>
 				</div>
 
@@ -103,7 +118,8 @@
 							<img src="images/running.png"/><label>Summary</label></a>
 					</div>
 					<div class="ui-block-b">
-						<a id="ps-btn" class="home-btn fastclick" href="#ps-page" data-role="button" data-rel="page" data-transition="slide" data-theme="ll" onclick=""> <img src="images/SVG/heart.svg"><label>Hello World</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#" data-role="button" data-rel="page" data-transition="slide" data-theme="ll" onclick=""> 
+							<img src="images/report.png"><label>Records</label></a>
 					</div>
 				</div>
 			</div>
@@ -131,7 +147,7 @@
 				-->
 				<div class="ui-grid-solo situp-container">
 					<div data-role="fieldcontain" class="situp">
-						<label class="situp" for="situp">Sit Ups Points:</label>
+						<label class="situp" for="situp">Number of Points for Sit Ups:</label>
 						<input type="range" id="situp-pts-slider" class="pts-score-slider" name="slider" data-theme="su" data-highlight="true" value="15" min="0" max="25" data-highlight="true" />
 					</div>
 					<div data-role="fieldcontain">
@@ -142,7 +158,7 @@
 
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain" class="pushup">
-						<label class="pushup" for="pushup">Push Ups Points:</label>
+						<label class="pushup" for="pushup">Number of Points for Push Ups:</label>
 						<input type="range" id="pushup-pts-slider" class="pts-score-slider" name="slider" data-theme="pu" value="15" min="0" max="25" data-highlight="true" />
 					</div>
 					<div data-role="fieldcontain">
@@ -153,20 +169,20 @@
 
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain" class="running">
-						<label class="running" for="running">2.4Km Run Points:</label>
+						<label class="running" for="running">Number of Points for 2.4Km Run:</label>
 						<input type="range" id="running-pts-slider"  class="pts-score-slider" name="slider" data-theme="rn" value="25" min="0" max="50" data-highlight="true" />
 					</div>
 					<div data-role="fieldcontain">
-						<label class="running float-left" for="running-score">Running Ups To Do:  &nbsp; &nbsp; &nbsp;</label>
+						<label class="running float-left" for="running-score">Running Time:  &nbsp; &nbsp; &nbsp;</label>
 						<label class="running" name="running-score" id="running-score"></label>
 					</div>
 				</div>
 
 				<div class="ui-grid-solo">
-					<div data-role="fieldcontain">
-						<label class="float-left">Total Points: </label>
+					<div data-role="fieldcontain" class="result">
+						<label class="float-left">Total Points: &nbsp; &nbsp; &nbsp; </label>
 						<label id="ps-total">100</label>
-						<label id="ps-award"></label>
+						<label class="reward-label" id="ps-award"></label>
 					</div>
 				</div>
 			</div>
@@ -192,7 +208,7 @@
 				-->
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain" class="situp">
-						<label class="situp" for="situp">Sit Ups Scores:</label>
+						<label class="situp" for="situp">Number of Sit Ups:</label>
 						<input type="range" id="situp-score-slider" class="score-pts-slider" data-theme="su" name="slider" value="30" min="0" max="60" data-highlight="true" />
 					</div>
 					<div data-role="fieldcontain">
@@ -203,7 +219,7 @@
 
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain" class="pushup">
-						<label class="pushup" for="pushup">Push Ups Points:</label>
+						<label class="pushup" for="pushup">Number of Push Ups:</label>
 						<input type="range" id="pushup-score-slider" class="score-pts-slider" data-theme="pu" name="slider" value="30" min="0" max="60" data-highlight="true" />
 					</div>
 					<div data-role="fieldcontain">
@@ -214,7 +230,7 @@
 
 				<div class="ui-grid-solo time-slider">
 					<div data-role="fieldcontain" class="running">
-						<label class="running" for="running">2.4Km Run Points:</label>
+						<label class="running" for="running">Timing of 2.4Km Run:</label>
 						<input type="range" name="sliderTime" id="running-score-slider" data-theme="rn" class="score-pts-slider" data-highlight="true" min="510" max="1100" value="720" />
 
 					</div>
@@ -225,10 +241,10 @@
 				</div>
 
 				<div class="ui-grid-solo">
-					<div data-role="fieldcontain">
-						<label class="float-left">Total Points: </label>
+					<div data-role="fieldcontain" class="result">
+						<label class="float-left">Total Points: &nbsp; &nbsp; &nbsp; </label>
 						<label id="sp-total">100</label>
-						<label id="sp-award"></label>
+						<label class="reward-label" id="sp-award"></label>
 					</div>
 				</div>
 			</div>
@@ -261,38 +277,19 @@
 				<br>
 				<br>
 				<br>
-				<!--
-				<div class="ui-grid-b">
-				<div class="ui-block-a">
-				<table class="table-left">
-
-				</table>
-				</div>
-				<div class="ui-block-b">
-				<table class="table-center">
-
-				</table>
-				</div>
-				<div class="ui-block-c">
-				<table class="table-right">
-
-				</table>
-				</div>
-				</div>
-				-->
 
 			</div>
 			<div class="footer-container" data-role="footer" data-theme="i" data-position="fixed" data-fullscreen="true">
 				<div data-role="navbar" data-iconpos="top">
 					<ul>
 						<li>
-							<a id="situp-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populateSitupTable();"><i class="fa fa-home"></i></br>Situp</a>
+							<a id="situp-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populateSitupTable();"><img src="images/situp.png"/></br>Situp</a>
 						</li>
 						<li>
-							<a id="pushup-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populatePushupTable();"><i class="fa fa-play"></i></br>Pushup</a>
+							<a id="pushup-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populatePushupTable();"><img src="images/pushup.png"/></br>Pushup</a>
 						</li>
 						<li>
-							<a id="running-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populateRunningTable();"><i class="fa fa-trophy"></i></br>Running</a>
+							<a id="running-btn" class="nav-btn fastclick" data-role="button" href="#" onclick="populateRunningTable();"><img src="images/running.png"/></br>Running</a>
 						</li>
 					</ul>
 				</div>

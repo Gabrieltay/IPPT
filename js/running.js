@@ -861,4 +861,5 @@ function RunningPoint2Score(agegroup, point) {
 		if (running[agegroup][i] == point)
 			return i;
 	}
+	return RunningPoint2Score(agegroup, point-1);
 }

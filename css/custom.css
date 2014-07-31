@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'allfont';
+  src: url("../fonts/Odin Rounded - Bold.otf");
+}
+@font-face {
+  font-family: 'headerfont';
+  src: url("../fonts/Quicksand-Regular.otf");
+}
 *:not(input[type=date],
 input[type=number], input[type=text]) {
   -webkit-tap-highlight-color: transparent;
@@ -19,6 +27,14 @@ body {
 
 section {
   background-color: #3D3D3D !important;
+}
+
+header {
+  font-family: 'headerfont' !important;
+}
+
+div, a {
+  font-family: 'allfont' !important;
 }
 
 .table-container {
@@ -85,4 +101,12 @@ section {
 
 .running .ui-slider-bg {
   background: #2FCC71 !important;
+}
+
+.result label {
+  color: #E64C65;
+}
+
+.reward-label {
+  color: #F7B519 !important;
 }
