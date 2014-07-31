@@ -13,7 +13,12 @@ input[type=number], input[type=text]) {
 
 body {
   overflow-x: hidden;
+  background-color: #222222   !important;
   -webkit-backface-visibility: visible;
+}
+
+section {
+  background-color: #3D3D3D !important;
 }
 
 .table-container {
@@ -48,4 +53,36 @@ body {
 }
 .table-container tr:nth-child(even) {
   background-color: #ffffff;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.situp {
+  color: #FBB050;
+}
+
+.situp .ui-slider-bg {
+  background: #FBB050 !important;
+}
+
+.pushup {
+  color: #4FC4F6;
+}
+
+.pushup .ui-slider-bg {
+  background: #4FC4F6 !important;
+}
+
+.running {
+  color: #2FCC71;
+}
+
+.running .ui-slider-bg {
+  background: #2FCC71 !important;
 }

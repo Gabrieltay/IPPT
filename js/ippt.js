@@ -25,22 +25,22 @@ $(document).on('pagebeforechange', function() {
 	$(".pts-score-slider").change(function() {
 		calculatePts2Score();
 	});
-	/*
-	$('#age-pts-input').change(function() {
-		calculatePts2Score();
-	});*/
-	
+
 	$(".score-pts-slider").change(function() {
 		calculateScore2Pts();
 	});
 
-	$('#age-score-input').change(function() {
-		calculateScore2Pts();
+	$('#age-input').change(function() {
+		if (isNumeric($('#age-input').val()) && parseInt($('#age-input').val()) >= 16 && parseInt($('#age-input').val()) <= 60) {
+			calculateScore2Pts();
+			calculatePts2Score();
+			window.localStorage.setItem("age", Math.floor(parseInt($('#age-input').val())));
+		}
 	});
-	
+
 	$(".timeLabel").remove();
 	$("#running-score-slider").parent().prepend('<input type="text" data-role="none" class="timeLabel score-pts-slider ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input" value="12:00" disabled />')
-	
+
 	$("#running-score-slider").change(function() {
 		var time = secondsToTimeString($(this).val());
 		$(".timeLabel").val(time);
@@ -48,15 +48,23 @@ $(document).on('pagebeforechange', function() {
 });
 
 var init = function() {
+	initLocalStorage();
 	createPushupArray();
 	createRunningArray();
 	createSitupArray();
+
+	$('#age-input').val(window.localStorage.getItem("age"));
 }
+function initLocalStorage() {
+	if (window.localStorage.getItem("age") == null)
+		window.localStorage.setItem("age", 30);
+}
+
 
 $(document).ready(init);
 
 function calculatePts2Score() {
-	agegroupts = getAgeGroup(parseInt($("#age-pts-input").val()));
+	agegroupts = getAgeGroup(parseInt($("#age-input").val()));
 
 	situppts = $("#situp-pts-slider").val();
 	$("#situp-score").text(SitupPoint2Score(agegroupts, situppts));
@@ -74,7 +82,7 @@ function calculatePts2Score() {
 }
 
 function calculateScore2Pts() {
-	agegroupscore = getAgeGroup(parseInt($("#age-score-input").val()));
+	agegroupscore = getAgeGroup(parseInt($("#age-input").val()));
 
 	situpscore = $("#situp-score-slider").val();
 	$("#situp-pts").text(SitupScore2Point(agegroupscore, situpscore));
@@ -113,7 +121,7 @@ function populateRunningTable() {
 	$(".table").empty();
 	agegroupsum = getAgeGroup(parseInt($("#age-sum-input").val()));
 	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
-	for (var i = 510; i <= 1100; i+=10) {
+	for (var i = 510; i <= 1100; i += 10) {
 		$(".table").append('<tr><td>' + secondsToTimeString(i) + '</td><td>' + RunningScore2Point(agegroupsum, i) + '</td></tr>');
 	}
 }
@@ -183,4 +191,8 @@ function pad(n, width, z) {
 	z = z || '0';
 	n = n + '';
 	return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+function isNumeric(n) {
+	return !isNaN(parseFloat(n)) && isFinite(n);
 }
