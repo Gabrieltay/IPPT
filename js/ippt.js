@@ -30,6 +30,11 @@ $(document).on('pagebeforechange', function() {
 		calculateScore2Pts();
 	});
 
+/*
+	$(".rw-score-slider").change(function() {
+		calculateReward2Score();
+	});
+*/
 	$('#age-input').change(function() {
 		if (isNumeric($('#age-input').val()) && parseInt($('#age-input').val()) >= 16 && parseInt($('#age-input').val()) <= 60) {
 			calculateScore2Pts();
@@ -45,6 +50,15 @@ $(document).on('pagebeforechange', function() {
 		var time = secondsToTimeString($(this).val());
 		$(".timeLabel").val(time);
 	});
+
+/*
+	$(".rw-timeLabel").remove();
+	$("#running-rw-slider").parent().prepend('<input type="text" data-role="none" class="rw-timeLabel score-pts-slider ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input" value="12:00" disabled />')
+	$("#running-rw-slider").change(function() {
+		var time = secondsToTimeString($(this).val());
+		$(".rw-timeLabel").val(time);
+	});
+*/
 });
 
 var init = function() {
@@ -62,6 +76,53 @@ function initLocalStorage() {
 
 
 $(document).ready(init);
+
+/*
+function calculateReward2Score() {
+	var agegrouprw = getAgeGroup(parseInt($("#age-input").val()));
+	var awardpoints = getAwardPoints($('#select-choice-rewards').val());
+	var fixed = $('#select-choice-stations').val();
+	var situpsc;
+	var situppts = 0;
+	var pushupsc;
+	var pushuppts = 0;
+	var runningsc;
+	var runningpts = 0;
+	var remaining = 0;
+	
+	
+	if ( fixed == "SITUP") 
+	{
+		situpsc = $("#situp-rw-slider").val();
+		situppts = SitupScore2Point(agegrouprw, situpsc);
+		$("#situp-rw-pts").text(situppts);
+		remaining = awardpoints - situppts;
+		if ( remaining / 2 > 25 )
+		{
+			pushuppts = 25;
+			runningpts = remaining - pushuppts;
+		}
+		else 
+		{
+			pushuppts = remaining / 2;
+			runningpts = remaining - pushuppts;
+		}
+		pushupsc = PushupPoint2Score(agegrouprw, pushuppts);
+		$("#pushup-rw-slider").val(pushupsc);
+		$("#pushup-rw-slider").slider('refresh');
+	}
+	
+	else if ( fixed == "PUSHUP" )
+	{
+		
+	}
+	
+	else if ( fixed == "RUNNING" )
+	{
+		
+	}
+}
+*/
 
 function calculatePts2Score() {
 	agegroupts = getAgeGroup(parseInt($("#age-input").val()));
@@ -172,6 +233,19 @@ function getAward(points) {
 		return awards.PASS;
 	else
 		return awards.FAIL;
+}
+
+function getAwardPoints(award) {
+	if (award == awards.GOLDPLUS)
+		return 85;
+	else if (award == awards.GOLD)
+		return 81;
+	else if (award == awards.SILVER)
+		return 71;
+	else if (award == awards.PASSPLUS)
+		return 61;
+	else
+		return 50;
 }
 
 function secondsToTimeString(seconds) {
