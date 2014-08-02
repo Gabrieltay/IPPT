@@ -117,23 +117,23 @@
 						<a id="ps-btn" class="home-btn fastclick" href="#sp-page" data-role="button" data-rel="page" data-transition="flip" data-theme="jj" onclick="calculateScore2Pts();"> <img src="images/pushup.svg"><label>Scores</label></a><!-- <i class="fa fa-arrow-right"></i> Point</label></a>-->
 					</div>
 				</div>
-
-				<div class="ui-grid-a ">
-					<div class="ui-block-a middle-block">
-						<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="slideup" data-theme="kk" onclick="populateSitupTable();"> <img src="images/running.svg"/><label>Summary</label></a>
-					</div>
-				</div>
-
 				<!--
-				<div class="ui-grid-a">
-				<div class="ui-block-a">
-				<a id="ps-btn" class="home-btn fastclick" href="#rs-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="kk" onclick=""> <img src="images/running.svg"/><label>Awards</label></a>
-				</div>
-				<div class="ui-block-b">
-				<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="slide" data-theme="ll" onclick="populateSitupTable();"> <img src="images/report.svg"><label>Summary</label></a>
+				<div class="ui-grid-a ">
+				<div class="ui-block-a middle-block">
+				<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="slideup" data-theme="kk" onclick="populateSitupTable();"> <img src="images/running.svg"/><label>Summary</label></a>
 				</div>
 				</div>
 				-->
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a id="ps-btn" class="home-btn fastclick" href="#rs-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="kk" onclick=""> <img src="images/running.svg"/><label>Awards</label></a>
+					</div>
+					<div class="ui-block-b">
+						<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="slide" data-theme="ll" onclick="populateSitupTable();"> <img src="images/report.svg"><label>Summary</label></a>
+					</div>
+				</div>
+
 			</div>
 		</section>
 
@@ -242,7 +242,7 @@
 				<div class="ui-grid-solo time-slider">
 					<div data-role="fieldcontain" class="running">
 						<label class="running" for="running">Timing of 2.4Km Run:</label>
-						<input type="range" name="sliderTime" id="running-score-slider" data-theme="rn" class="score-pts-slider" data-highlight="true" min="510" max="1100" value="720" />
+						<input type="range" name="sliderTime" id="running-score-slider" data-theme="rn" class="score-pts-slider" data-highlight="true" min="0" max="590" value="380" />
 
 					</div>
 					<div data-role="fieldcontain">
@@ -262,77 +262,64 @@
 		</section>
 
 		<!-- Rewards to Score Page -->
-		<!--
+
 		<section data-role="page" id="rs-page">
 			<header class="page-header" data-role="header" data-theme="i" data-tap-toggle="false">
 				<a class="l-header-btn fastclick" data-rel="back" data-role="button" title="Home"><i class="fa fa-chevron-left"></i></a>
 				<h1>Reward <i class="fa fa-arrow-right"></i> Score</h1>
 			</header>
 			<div class="content">
-				<div class="ui-grid-a">
-					<div class="ui-block-a">
-						<select name="select-choice-rewards" id="select-choice-rewards" data-native-menu="true" data-theme="a">
+				<div class="ui-grid-solo">
+					<div data-role="fieldcontain">
+						<select name="select-choice-rewards" id="select-choice-rewards" data-native-menu="true" data-theme="rn">
 							<option value="GOLD PLUS">Gold Plus</option>
 							<option value="GOLD">Gold</option>
 							<option value="SILVER">Silver</option>
 							<option value="PASS PLUS">Pass Plus</option>
 							<option value="PASS">Pass</option>
 						</select>
-					</div>
-					<div class="ui-block-b" >
-						<select name="select-choice-stations" id="select-choice-stations" data-native-menu="true" data-theme="a">
-							<option value="SITUP">Situps</option>
-							<option value="PUSHUP">Pushups</option>
-							<option value="RUNNING">Running</option>
-						</select>
-					</div>
-				</div>
 
-				<div class="ui-grid-solo">
-					<div data-role="fieldcontain" class="situp">
-						<label class="situp" for="situp">Number of Sit Ups:</label>
-						<input type="range" id="situp-rw-slider" class="rw-score-slider" data-theme="su" name="slider" value="30" min="1" max="60" data-highlight="true" />
-					</div>
-				</div>
+						<div class="situp">
+							<label class="situp" for="situp">
+								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-a" value="SITUP" checked="checked" />
+								Number of Sit Ups:</label>
+							<input type="range" id="situp-rw-slider" class="rw-score-slider" data-theme="su" name="slider" value="30" min="1" max="60" data-highlight="true" />
+							</br>
+							<label class="situp float-left" for="situp-rw-pts">Points Achieved:  &nbsp; &nbsp; &nbsp;</label>
+							<label class="situp" name="situp-rw-pts" id="situp-rw-pts">0</label>
+						</div>
 
-				<div class="ui-grid-solo">
-					<div data-role="fieldcontain">
-						<label class="situp float-left" for="situp-rw-pts">Points Achieved:  &nbsp; &nbsp; &nbsp;</label>
-						<label class="situp" name="situp-rw-pts" id="situp-rw-pts"></label>
-					</div>
-				</div>
-				<div class="ui-grid-solo">
-					<div data-role="fieldcontain" class="pushup">
-						<label class="pushup" for="pushup">Number of Push Ups:</label>
-						<input type="range" id="pushup-rw-slider" class="rw-score-slider" data-theme="pu" name="slider" value="30" min="1" max="60" data-highlight="true" />
-					</div>
-					<div data-role="fieldcontain">
-						<label class="pushup float-left" for="pushup-pts">Points Achieved:  &nbsp; &nbsp; &nbsp;</label>
-						<label class="pushup" name="pushup-rw-pts" id="pushup-rw-pts"></label>
-					</div>
-				</div>
+						<div class="pushup">
+							<label class="pushup" for="pushup">
+								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-b" value="PUSHUP" />
+								Number of Push Ups:</label>
+							<input type="range" id="pushup-rw-slider" class="rw-score-slider" data-theme="pu" name="slider" value="30" min="1" max="60" data-highlight="true" />
+							</br>
+							<label class="pushup float-left" for="pushup-pts">Points Achieved:  &nbsp; &nbsp; &nbsp;</label>
+							<label class="pushup" name="pushup-rw-pts" id="pushup-rw-pts">0</label>
+						</div>
 
-				<div class="ui-grid-solo time-slider">
-					<div data-role="fieldcontain" class="running">
-						<label class="running" for="running">Timing of 2.4Km Run:</label>
-						<input type="range" name="sliderTime" id="running-rw-slider" data-theme="rn" class="rw-score-slider" data-highlight="true" min="510" max="1100" value="720" />
+						<div class="running time-slider">
+							<label class="running" for="running">
+								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-c" value="RUNNING" />
+								Timing of 2.4Km Run:</label>
+							<input type="range" name="sliderTime" id="running-rw-slider" data-theme="rn" class="rw-score-slider" data-highlight="true" min="0" max="590" value="380" />
 
-					</div>
-					<div data-role="fieldcontain">
-						<label class="running float-left" for="pushup-pts">Points Achieved:  &nbsp; &nbsp; &nbsp;</label>
-						<label class="running" name="running-rw-pts" id="running-rw-pts"></label>
+							<label class="running float-left" for="pushup-pts">Points Achieved:  &nbsp; &nbsp; &nbsp;</label>
+							<label class="running" name="running-rw-pts" id="running-rw-pts">0</label>
+						</div>
 					</div>
 				</div>
 
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain" class="result">
 						<label class="float-left">Total Points: &nbsp; &nbsp; &nbsp; </label>
-						<label id="sp-total">100</label>
+						<label id="rw-total">100</label>
 					</div>
 				</div>
 			</div>
 		</section>
-	-->
+
 		<!-- Summary Page -->
 		<section data-role="page" id="summary-page">
 			<div class="content">

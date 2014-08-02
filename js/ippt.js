@@ -19,6 +19,13 @@ var pushupscore = 0;
 var runningscore = 0;
 var sptotal = 0;
 
+var agegrouprw = 0;
+var situprw = 0;
+var pushuprw = 0;
+var runningrw = 0;
+var rwtotal = 0;
+var remaining = 0;
+
 var agegroupsum = 0;
 
 $(document).on('pagebeforechange', function() {
@@ -30,11 +37,60 @@ $(document).on('pagebeforechange', function() {
 		calculateScore2Pts();
 	});
 
-/*
 	$(".rw-score-slider").change(function() {
 		calculateReward2Score();
 	});
-*/
+
+	$("#situp-rw-slider").on('slidestop', function(event) {
+		//alert("ksksk")
+		//$("#pushup-rw-slider").val(22);
+		//$("#pushup-rw-slider").slider('refresh');
+		//alert($("input[name*=radio-choice-a]:checked").val());
+		var target = getAwardPoints($("#select-choice-rewards").val());
+		if ($("input[name*=radio-choice-a]:checked").val() == "SITUP") {
+			constantAdjustment();
+		} else if ($("input[name*=radio-choice-a]:checked").val() == "PUSHUP") {
+			remaining = target - SitupScore2Point(agegrouprw, situprw) - PushupScore2Point(agegrouprw, pushuprw);
+			if (remaining > 50) {
+				$("#situp-rw-slider").val(SitupPoint2Score(agegrouprw, (target - PushupScore2Point(agegrouprw, pushuprw) - 50)));
+				$("#situp-rw-slider").slider('refresh');
+				situprw = $("#situp-rw-slider").val();
+				remaining = target - SitupScore2Point(agegrouprw, situprw) - PushupScore2Point(agegrouprw, pushuprw);
+			}
+			$("#running-rw-slider").val(1100 - RunningPoint2Score(agegrouprw, remaining));
+			$("#running-rw-slider").slider('refresh');
+			var time = secondsToTimeString(parseInt(RunningPoint2Score(agegrouprw, remaining)));
+			$(".rw-timeLabel").val(time);
+		} else// Running
+		{
+
+		}
+	});
+
+	$("#pushup-rw-slider").on('slidestop', function(event) {
+		var target = getAwardPoints($("#select-choice-rewards").val());
+
+		if ($("input[name*=radio-choice-a]:checked").val() == "PUSHUP") {
+			constantAdjustment();
+		} else if ($("input[name*=radio-choice-a]:checked").val() == "SITUP") {
+			remaining = target - SitupScore2Point(agegrouprw, situprw) - PushupScore2Point(agegrouprw, pushuprw);
+			if (remaining > 50) {
+				$("#pushup-rw-slider").val(PushupPoint2Score(agegrouprw, (target - SitupScore2Point(agegrouprw, situprw) - 50)));
+				$("#pushup-rw-slider").slider('refresh');
+				pushuprw = $("#pushup-rw-slider").val();
+				remaining = target - SitupScore2Point(agegrouprw, situprw) - PushupScore2Point(agegrouprw, pushuprw);
+			}
+			$("#running-rw-slider").val(1100 - RunningPoint2Score(agegrouprw, remaining));
+			$("#running-rw-slider").slider('refresh');
+			var time = secondsToTimeString(parseInt(RunningPoint2Score(agegrouprw, remaining)));
+			$(".rw-timeLabel").val(time);
+
+		} else// Running
+		{
+
+		}
+	});
+
 	$('#age-input').change(function() {
 		if (isNumeric($('#age-input').val()) && parseInt($('#age-input').val()) >= 16 && parseInt($('#age-input').val()) <= 60) {
 			calculateScore2Pts();
@@ -45,20 +101,18 @@ $(document).on('pagebeforechange', function() {
 
 	$(".timeLabel").remove();
 	$("#running-score-slider").parent().prepend('<input type="text" data-role="none" class="timeLabel score-pts-slider ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input" value="12:00" disabled />')
-
 	$("#running-score-slider").change(function() {
-		var time = secondsToTimeString($(this).val());
+		var time = secondsToTimeString(parseInt(1100 - $(this).val()));
 		$(".timeLabel").val(time);
 	});
 
-/*
 	$(".rw-timeLabel").remove();
 	$("#running-rw-slider").parent().prepend('<input type="text" data-role="none" class="rw-timeLabel score-pts-slider ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input" value="12:00" disabled />')
 	$("#running-rw-slider").change(function() {
-		var time = secondsToTimeString($(this).val());
+		var time = secondsToTimeString(parseInt(1100 - $(this).val()));
 		$(".rw-timeLabel").val(time);
 	});
-*/
+
 });
 
 var init = function() {
@@ -77,52 +131,64 @@ function initLocalStorage() {
 
 $(document).ready(init);
 
-/*
-function calculateReward2Score() {
-	var agegrouprw = getAgeGroup(parseInt($("#age-input").val()));
-	var awardpoints = getAwardPoints($('#select-choice-rewards').val());
-	var fixed = $('#select-choice-stations').val();
-	var situpsc;
-	var situppts = 0;
-	var pushupsc;
-	var pushuppts = 0;
-	var runningsc;
-	var runningpts = 0;
-	var remaining = 0;
-	
-	
-	if ( fixed == "SITUP") 
-	{
-		situpsc = $("#situp-rw-slider").val();
-		situppts = SitupScore2Point(agegrouprw, situpsc);
-		$("#situp-rw-pts").text(situppts);
-		remaining = awardpoints - situppts;
-		if ( remaining / 2 > 25 )
-		{
-			pushuppts = 25;
-			runningpts = remaining - pushuppts;
+function constantAdjustment() {
+	agegrouprw = getAgeGroup(parseInt($("#age-input").val()));
+	var target = getAwardPoints($("#select-choice-rewards").val());
+
+	if ($("input[name*=radio-choice-a]:checked").val() == "SITUP") {
+		remaining = target - SitupScore2Point(agegrouprw, situprw);
+		if (remaining > 75) {
+			$("#situp-rw-slider").val(SitupPoint2Score(agegrouprw, (target - 75)));
+			$("#situp-rw-slider").slider('refresh');
+			situprw = $("#situp-rw-slider").val();
+			remaining = target - SitupScore2Point(agegrouprw, situprw);
 		}
-		else 
-		{
-			pushuppts = remaining / 2;
-			runningpts = remaining - pushuppts;
-		}
-		pushupsc = PushupPoint2Score(agegrouprw, pushuppts);
-		$("#pushup-rw-slider").val(pushupsc);
+		var allo = Math.floor(remaining / 3);
+		$("#pushup-rw-slider").val(PushupPoint2Score(agegrouprw, allo));
 		$("#pushup-rw-slider").slider('refresh');
-	}
-	
-	else if ( fixed == "PUSHUP" )
+
+		$("#running-rw-slider").val(1100 - RunningPoint2Score(agegrouprw, remaining - allo));
+		$("#running-rw-slider").slider('refresh');
+		var time = secondsToTimeString(parseInt(RunningPoint2Score(agegrouprw, remaining - allo)));
+		$(".rw-timeLabel").val(time);
+	} else if ($("input[name*=radio-choice-a]:checked").val() == "PUSHUP") {
+		remaining = target - PushupScore2Point(agegrouprw, pushuprw);
+		if (remaining > 75) {
+			$("#pushup-rw-slider").val(PushupPoint2Score(agegrouprw, (target - 75)));
+			$("#pushup-rw-slider").slider('refresh');
+			pushuprw = $("#pushup-rw-slider").val();
+			remaining = target - PushupScore2Point(agegrouprw, pushuprw);
+		}
+		var allo = Math.floor(remaining / 3);
+		$("#situp-rw-slider").val(SitupPoint2Score(agegrouprw, allo));
+		$("#situp-rw-slider").slider('refresh');
+
+		$("#running-rw-slider").val(1100 - RunningPoint2Score(agegrouprw, remaining - allo));
+		$("#running-rw-slider").slider('refresh');
+		var time = secondsToTimeString(parseInt(RunningPoint2Score(agegrouprw, remaining - allo)));
+		$(".rw-timeLabel").val(time);
+	} else// RUNNING
 	{
-		
+
 	}
-	
-	else if ( fixed == "RUNNING" )
-	{
-		
-	}
+
 }
-*/
+
+function calculateReward2Score() {
+	agegrouprw = getAgeGroup(parseInt($("#age-input").val()));
+
+	situprw = $("#situp-rw-slider").val();
+	$("#situp-rw-pts").text(SitupScore2Point(agegrouprw, situprw));
+
+	pushuprw = $("#pushup-rw-slider").val();
+	$("#pushup-rw-pts").text(PushupScore2Point(agegrouprw, pushuprw));
+
+	runningrw = parseInt(1100 - $("#running-rw-slider").val());
+	$("#running-rw-pts").text(RunningScore2Point(agegrouprw, runningrw));
+
+	rwtotal = parseInt(SitupScore2Point(agegrouprw, situprw)) + parseInt(PushupScore2Point(agegrouprw, pushuprw)) + parseInt(RunningScore2Point(agegrouprw, runningrw));
+	$('#rw-total').text(rwtotal);
+}
 
 function calculatePts2Score() {
 	agegroupts = getAgeGroup(parseInt($("#age-input").val()));
@@ -151,7 +217,7 @@ function calculateScore2Pts() {
 	pushupscore = $("#pushup-score-slider").val();
 	$("#pushup-pts").text(PushupScore2Point(agegroupscore, pushupscore));
 
-	runningscore = $("#running-score-slider").val();
+	runningscore = parseInt(1100 - $("#running-score-slider").val());
 	$("#running-pts").text(RunningScore2Point(agegroupscore, runningscore));
 
 	sptotal = parseInt(SitupScore2Point(agegroupscore, situpscore)) + parseInt(PushupScore2Point(agegroupscore, pushupscore)) + parseInt(RunningScore2Point(agegroupscore, runningscore));
