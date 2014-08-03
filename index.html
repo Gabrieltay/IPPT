@@ -127,7 +127,7 @@
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a">
-						<a id="ps-btn" class="home-btn fastclick" href="#rs-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="kk" onclick=""> <img src="images/running.svg"/><label>Awards</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#rs-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="kk" onclick="initAdjustmenet();"> <img src="images/running.svg"/><label>Awards</label></a>
 					</div>
 					<div class="ui-block-b">
 						<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="slide" data-theme="ll" onclick="populateSitupTable();"> <img src="images/report.svg"><label>Summary</label></a>
@@ -281,7 +281,7 @@
 
 						<div class="situp">
 							<label class="situp" for="situp">
-								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-a" value="SITUP" checked="checked" />
+								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-a" value="SITUP"  />
 								Number of Sit Ups:</label>
 							<input type="range" id="situp-rw-slider" class="rw-score-slider" data-theme="su" name="slider" value="30" min="1" max="60" data-highlight="true" />
 							</br>
@@ -301,7 +301,7 @@
 
 						<div class="running time-slider">
 							<label class="running" for="running">
-								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-c" value="RUNNING" />
+								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-c" value="RUNNING" checked="checked"/>
 								Timing of 2.4Km Run:</label>
 							<input type="range" name="sliderTime" id="running-rw-slider" data-theme="rn" class="rw-score-slider" data-highlight="true" min="0" max="590" value="380" />
 
