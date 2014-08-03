@@ -21,8 +21,11 @@ var sptotal = 0;
 
 var agegrouprw = 0;
 var situprw = 0;
+var situprwpts = 0;
 var pushuprw = 0;
+var pushuprwpts = 0;
 var runningrw = 0;
+var runningrwpts = 0;
 var rwtotal = 0;
 var remaining = 0;
 
@@ -41,7 +44,7 @@ $(document).on('pagebeforechange', function() {
 		calculateReward2Score();
 	});
 
-	$("#situp-rw-slider").on('slidestop', function(event) {
+	$("#situp-rw-slider").on('slidestop', function(event) {console.log("Start")
 		//alert("ksksk")
 		//$("#pushup-rw-slider").val(22);
 		//$("#pushup-rw-slider").slider('refresh');
@@ -65,6 +68,7 @@ $(document).on('pagebeforechange', function() {
 		{
 
 		}
+		console.log("End")
 	});
 
 	$("#pushup-rw-slider").on('slidestop', function(event) {
