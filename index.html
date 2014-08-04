@@ -130,7 +130,7 @@
 						<a id="ps-btn" class="home-btn fastclick" href="#rs-page" data-role="button" data-rel="page" data-transition="flip" data-direction="reverse" data-theme="kk" onclick="initAdjustmenet();"> <img src="images/running.svg"/><label>Awards</label></a>
 					</div>
 					<div class="ui-block-b">
-						<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="slide" data-theme="ll" onclick="populateSitupTable();"> <img src="images/report.svg"><label>Summary</label></a>
+						<a id="ps-btn" class="home-btn fastclick" href="#summary-page" data-role="button" data-rel="page" data-transition="flip" data-theme="ll" onclick="populateSitupTable();"> <img src="images/report.svg"><label>Summary</label></a>
 					</div>
 				</div>
 
@@ -147,16 +147,6 @@
 				<h1>Point <i class="fa fa-arrow-right"></i> Score</h1>
 			</header>
 			<div class="content">
-				<!--
-				<div data-role="fieldcontain">
-				<div class="dispInlineLabel">
-				<label id="age-pts-label"  for="age">Your Age:</label>
-				</div>
-				<div class="dispInline">
-				<input id="age-pts-input"  type="number" name="age" min="1" max="60" value="30">
-				</div>
-				</div>
-				-->
 				<div class="ui-grid-solo situp-container">
 					<div data-role="fieldcontain" class="situp">
 						<label class="situp" for="situp">Number of Points for Sit Ups:</label>
@@ -207,16 +197,6 @@
 				<h1>Score <i class="fa fa-arrow-right"></i> Point</h1>
 			</header>
 			<div class="content">
-				<!--
-				<div data-role="fieldcontain">
-				<div class="dispInlineLabel">
-				<label id="age-score-label"  for="age">Your Age:</label>
-				</div>
-				<div class="dispInline">
-				<input id="age-score-input"  type="number" name="age" min="1" max="60" value="30">
-				</div>
-				</div>
-				-->
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain" class="situp">
 						<label class="situp" for="situp">Number of Sit Ups:</label>
@@ -262,17 +242,17 @@
 		</section>
 
 		<!-- Rewards to Score Page -->
-
 		<section data-role="page" id="rs-page">
 			<header class="page-header" data-role="header" data-theme="i" data-tap-toggle="false">
-				<a class="l-header-btn fastclick" data-rel="back" data-role="button" title="Home"><i class="fa fa-chevron-left"></i></a>
+				<a class="l-header-btn fastclick" href="#home-page" data-transition="flip" data-role="button" title="Home"><i class="fa fa-chevron-left"></i></a>
 				<h1>Reward <i class="fa fa-arrow-right"></i> Score</h1>
+				<a class="r-header-btn fastclick" href="#" data-rel="dialog" data-transition="fade" data-role="button" title="Help" onclick="toast('Select a station's score to be fixed.');"><i class="fa fa-info"></i></a>
 			</header>
 			<div class="content">
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain">
 						<select name="select-choice-rewards" id="select-choice-rewards" data-native-menu="true" data-theme="rn">
-							<option value="GOLD PLUS">Gold Plus</option>
+							<option value="GOLD PLUS">Gold Plus (>85)</option>
 							<option value="GOLD">Gold</option>
 							<option value="SILVER">Silver</option>
 							<option value="PASS PLUS">Pass Plus</option>
@@ -281,7 +261,7 @@
 
 						<div class="situp">
 							<label class="situp" for="situp">
-								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-a" value="SITUP"  />
+								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-a" value="SITUP" checked="checked"/>
 								Number of Sit Ups:</label>
 							<input type="range" id="situp-rw-slider" class="rw-score-slider" data-theme="su" name="slider" value="30" min="1" max="60" data-highlight="true" />
 							</br>
@@ -301,7 +281,7 @@
 
 						<div class="running time-slider">
 							<label class="running" for="running">
-								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-c" value="RUNNING" checked="checked"/>
+								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-c" value="RUNNING" />
 								Timing of 2.4Km Run:</label>
 							<input type="range" name="sliderTime" id="running-rw-slider" data-theme="rn" class="rw-score-slider" data-highlight="true" min="0" max="590" value="380" />
 
@@ -327,16 +307,6 @@
 					<a class="l-header-btn fastclick" data-rel="back" data-role="button" title="Home"><i class="fa fa-times"></i></a>
 					<h1>Summary</h1>
 				</header>
-				<!--
-				<div data-role="fieldcontain">
-				<div class="dispInlineLabel">
-				<label id="age-sum-label"  for="age">Your Age:</label>
-				</div>
-				<div class="dispInline">
-				<input id="age-sum-input"  type="number" name="age" min="1" max="60" value="30">
-				</div>
-				</div>
-				-->
 				<div class="ui-grid-solo">
 					<div class="table-container">
 						<table class="table">
@@ -349,7 +319,7 @@
 				<br>
 
 			</div>
-			<div class="footer-container" data-role="footer" data-theme="i" data-position="fixed" data-fullscreen="true">
+			<div class="footer-container" data-role="footer" data-theme="i" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
 				<div data-role="navbar" data-iconpos="top">
 					<ul>
 						<li>
@@ -366,5 +336,4 @@
 			</div>
 		</section>
 	</body>
-
 </html>

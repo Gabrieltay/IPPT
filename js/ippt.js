@@ -27,38 +27,54 @@ var pushuprwpts = 0;
 var runningrw = 0;
 var runningrwpts = 0;
 var rwtotal = 0;
+var target = 0;
 var remaining = 0;
 
 var agegroupsum = 0;
-
-$(document).on("pagecontainershow", function(event, ui) {
-	var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").prop('id');
-	if (activePage == "rs-page")
-	{
-			constantAdjustment();
-	}
+$(document).on('pageinit', '#home-page', function() {
+	console.log("Init home-page");
+	$('#age-input').change(function() {
+		if (isNumeric($('#age-input').val()) && parseInt($('#age-input').val()) >= 16 && parseInt($('#age-input').val()) <= 60) {
+			calculateScore2Pts();
+			calculatePts2Score();
+			window.localStorage.setItem("age", Math.floor(parseInt($('#age-input').val())));
+		}
+	});
 });
 
-$(document).on('pagebeforechange', function() {
-	
+$(document).on('pageinit', '#ps-page', function() {
+	console.log("Init ps-page");
 	$(".pts-score-slider").change(function() {
 		calculatePts2Score();
 	});
+});
 
+$(document).on('pageinit', '#sp-page', function() {
+	console.log("Init sp-page");
 	$(".score-pts-slider").change(function() {
 		calculateScore2Pts();
 	});
 
+	$(".timeLabel").remove();
+	$("#running-score-slider").parent().prepend('<input type="text" data-role="none" class="timeLabel score-pts-slider ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input" value="12:00" disabled />')
+	$("#running-score-slider").change(function() {
+		var time = secondsToTimeString(parseInt(1100 - $(this).val()));
+		$(".timeLabel").val(time);
+	});
+});
+
+$(document).on('pageinit', '#rs-page', function() {
+	console.log("Init rs-page");
 	$(".rw-score-slider").change(function() {
 		calculateReward2Score();
 	});
+	
+	$("#select-choice-rewards").change(function() {
+		constantAdjustment();
+	});
 
 	$("#situp-rw-slider").on('slidestop', function(event) {
-		//alert("ksksk")
-		//$("#pushup-rw-slider").val(22);
-		//$("#pushup-rw-slider").slider('refresh');
-		//alert($("input[name*=radio-choice-a]:checked").val());
-		var target = getAwardPoints($("#select-choice-rewards").val());
+		target = getAwardPoints($("#select-choice-rewards").val());
 		if ($("input[name*=radio-choice-a]:checked").val() == "SITUP") {
 			constantAdjustment();
 		} else if ($("input[name*=radio-choice-a]:checked").val() == "PUSHUP") {
@@ -89,8 +105,7 @@ $(document).on('pagebeforechange', function() {
 	});
 
 	$("#pushup-rw-slider").on('slidestop', function(event) {
-		var target = getAwardPoints($("#select-choice-rewards").val());
-
+		target = getAwardPoints($("#select-choice-rewards").val());
 		if ($("input[name*=radio-choice-a]:checked").val() == "PUSHUP") {
 			constantAdjustment();
 		} else if ($("input[name*=radio-choice-a]:checked").val() == "SITUP") {
@@ -121,8 +136,7 @@ $(document).on('pagebeforechange', function() {
 	});
 
 	$("#running-rw-slider").on('slidestop', function(event) {
-		var target = getAwardPoints($("#select-choice-rewards").val());
-
+		target = getAwardPoints($("#select-choice-rewards").val());
 		if ($("input[name*=radio-choice-a]:checked").val() == "RUNNING") {
 			constantAdjustment();
 		} else if ($("input[name*=radio-choice-a]:checked").val() == "SITUP") {
@@ -147,22 +161,6 @@ $(document).on('pagebeforechange', function() {
 			$("#situp-rw-slider").val(SitupPoint2Score(agegrouprw, remaining));
 			$("#situp-rw-slider").slider('refresh');
 		}
-
-	});
-
-	$('#age-input').change(function() {
-		if (isNumeric($('#age-input').val()) && parseInt($('#age-input').val()) >= 16 && parseInt($('#age-input').val()) <= 60) {
-			calculateScore2Pts();
-			calculatePts2Score();
-			window.localStorage.setItem("age", Math.floor(parseInt($('#age-input').val())));
-		}
-	});
-
-	$(".timeLabel").remove();
-	$("#running-score-slider").parent().prepend('<input type="text" data-role="none" class="timeLabel score-pts-slider ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input" value="12:00" disabled />')
-	$("#running-score-slider").change(function() {
-		var time = secondsToTimeString(parseInt(1100 - $(this).val()));
-		$(".timeLabel").val(time);
 	});
 
 	$(".rw-timeLabel").remove();
@@ -171,6 +169,15 @@ $(document).on('pagebeforechange', function() {
 		var time = secondsToTimeString(parseInt(1100 - $(this).val()));
 		$(".rw-timeLabel").val(time);
 	});
+});
+
+$(document).on("pagecontainershow", function(event, ui) {
+	var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").prop('id');
+	if (activePage === "rs-page") {
+		constantAdjustment();
+	} else if (activePage === "sp-page") {
+
+	}
 
 });
 
@@ -232,7 +239,7 @@ function constantAdjustment() {
 		$(".rw-timeLabel").val(time);
 	} else// RUNNING
 	{
-		remaining = target - RunningScore2Point(agegrouprw, runningrw);console.log(remaining)
+		remaining = target - RunningScore2Point(agegrouprw, runningrw);
 		if (remaining > 50) {
 			$("#running-rw-slider").val(1100 - RunningPoint2Score(agegrouprw, (target - 50)));
 			$("#running-rw-slider").slider('refresh');
@@ -280,7 +287,7 @@ function calculatePts2Score() {
 	pstotal = parseInt(situppts) + parseInt(pushuppts) + parseInt(runningpts);
 	$('#ps-total').text(pstotal);
 
-	$('#ps-award').text(getAward(pstotal));
+	$('#ps-award').text(getAward(pstotal) + '\xA0\xA0\xA0' +getNextAward(pstotal));
 }
 
 function calculateScore2Pts() {
@@ -298,13 +305,13 @@ function calculateScore2Pts() {
 	sptotal = parseInt(SitupScore2Point(agegroupscore, situpscore)) + parseInt(PushupScore2Point(agegroupscore, pushupscore)) + parseInt(RunningScore2Point(agegroupscore, runningscore));
 	$('#sp-total').text(sptotal);
 
-	$('#sp-award').text(getAward(sptotal));
+	$('#sp-award').text(getAward(sptotal) + '\xA0\xA0\xA0' +getNextAward(sptotal));
 }
 
 function populateSitupTable() {
 	$(".table").empty();
 	agegroupsum = getAgeGroup(parseInt($("#age-input").val()));
-	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
+	$(".table").append('<tr><td>Situps</td><td>Points</td></tr>');
 	for (var i = 60; i > 0; i--) {
 		$(".table").append('<tr><td>' + i + '</td><td>' + SitupScore2Point(agegroupsum, i) + '</td></tr>');
 	}
@@ -313,7 +320,7 @@ function populateSitupTable() {
 function populatePushupTable() {
 	$(".table").empty();
 	agegroupsum = getAgeGroup(parseInt($("#age-input").val()));
-	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
+	$(".table").append('<tr><td>Pushups</td><td>Points</td></tr>');
 	for (var i = 60; i > 0; i--) {
 		$(".table").append('<tr><td>' + i + '</td><td>' + PushupScore2Point(agegroupsum, i) + '</td></tr>');
 	}
@@ -322,7 +329,7 @@ function populatePushupTable() {
 function populateRunningTable() {
 	$(".table").empty();
 	agegroupsum = getAgeGroup(parseInt($("#age-input").val()));
-	$(".table").append('<tr><td>Score</td><td>Point</td></tr>');
+	$(".table").append('<tr><td>2.4Km Time</td><td>Points</td></tr>');
 	for (var i = 510; i <= 1100; i += 10) {
 		$(".table").append('<tr><td>' + secondsToTimeString(i) + '</td><td>' + RunningScore2Point(agegroupsum, i) + '</td></tr>');
 	}
@@ -389,6 +396,20 @@ function getAwardPoints(award) {
 		return 50;
 }
 
+function getNextAward(points) {
+	var more = 0;
+	var curAward = getAward(points);
+	if ( curAward === awards.GOLDPLUS )
+		return "";
+	while ( curAward == getAward(points+more))
+	{
+		
+		more++;		
+	}
+	console.log( "(" + more + " points to " + getAward(points+more) +")" );
+	return "( " + more + " points to " + getAward(points+more) +" )";
+}
+
 function secondsToTimeString(seconds) {
 	var min = Math.floor(seconds / 60);
 	var sec = seconds - (min * 60);
@@ -410,4 +431,8 @@ function pad(n, width, z) {
 
 function isNumeric(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function toast(msg) {
+	window.plugins.toast.show(msg, 'long', 'center');
 }

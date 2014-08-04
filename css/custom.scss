@@ -30,6 +30,9 @@ section {
   background-color: #3D3D3D !important;
 }
 
+section>h1 {
+  font-family: 'headerfont' !important;
+}
 
 div,a, {
   font-family: 'allfont' !important;
@@ -38,7 +41,6 @@ div,a, {
 .table-container {
 	margin: 0px;
 	padding: 0px;
-	//width: 100%;
 	border: 1px solid #999999;
 	border-radius: 14px !important;
 	
@@ -52,6 +54,11 @@ div,a, {
 		border-radius: 10px !important;
 	}
 	
+	td {
+    width: 50%;
+    border: 0px solid black;
+  }
+  
 	tr:last-child td:last-child {
 	  border-bottom-right-radius:14px;
 	}
