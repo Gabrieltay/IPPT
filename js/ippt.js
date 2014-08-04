@@ -432,7 +432,3 @@ function pad(n, width, z) {
 function isNumeric(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 }
-
-function toast(msg) {
-	window.plugins.toast.show(msg, 'long', 'center');
-}
