@@ -856,10 +856,18 @@ function RunningScore2Point(agegroup, score) {
 	return running[agegroup][score];
 }
 
-function RunningPoint2Score(agegroup, point) {
+function RunningPoint2Score(agegroup, point, min) {
 	for (var i = 1100; i >= 510; i -= 10) {
 		if (running[agegroup][i] == point)
 			return i;
 	}
-	return RunningPoint2Score(agegroup, point-1);
+	if (min)
+	{
+		point++;
+	}
+	else
+	{
+		point--;
+	}
+	return RunningPoint2Score(agegroup, point);
 }

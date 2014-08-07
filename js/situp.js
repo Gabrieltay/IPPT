@@ -857,4 +857,13 @@ function SitupPoint2Score(agegroup, point) {
 		if ( situp[agegroup][i] == point )
 			return i;
 	}
+	if (min)
+	{
+		point++;
+	}
+	else
+	{
+		point--;
+	}
+	return SitupPoint2Score(agegroup, point);
 }

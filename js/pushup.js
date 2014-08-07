@@ -851,10 +851,19 @@ function PushupScore2Point(agegroup, score) {
 	return pushup[agegroup][score];
 }
 
-function PushupPoint2Score(agegroup, point) {
-	for( var i = 1; i <= 60; i++ )
-	{
-		if ( pushup[agegroup][i] == point )
+function PushupPoint2Score(agegroup, point, min) {
+	console.log(point)
+	for (var i = 1; i <= 60; i++) {
+		if (pushup[agegroup][i] == point)
 			return i;
 	}
+	if (min)
+	{
+		point++;
+	}
+	else
+	{
+		point--;
+	}
+	return PushupPoint2Score(agegroup, point);
 }
