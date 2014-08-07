@@ -44,15 +44,45 @@ $(document).on('pageinit', '#home-page', function() {
 
 $(document).on('pageinit', '#ps-page', function() {
 	console.log("Init ps-page");
-	$(".pts-score-slider").change(function() {
-		calculatePts2Score();
+//	$(".pts-score-slider").change(function() {
+//		calculatePts2Score();
+//	});
+	
+	$("#situp-pts-slider").change(function() {
+		calculateSitupPts2Score();
+		calculateTotalPts2Score();
+	});
+	
+	$("#pushup-pts-slider").change(function() {
+		calculatePushupPts2Score();
+		calculateTotalPts2Score();
+	});
+	
+	$("#running-pts-slider").change(function() {
+		calculateRunningPts2Score();
+		calculateTotalPts2Score();
 	});
 });
 
 $(document).on('pageinit', '#sp-page', function() {
 	console.log("Init sp-page");
-	$(".score-pts-slider").change(function() {
-		calculateScore2Pts();
+//	$(".score-pts-slider").change(function() {
+//		calculateScore2Pts();
+//	});
+
+	$("#situp-score-slider").change(function() {
+		calculateSitupScore2Pts();
+		calculateTotalScore2Pts();
+	});
+	
+	$("#pushup-score-slider").change(function() {
+		calculatePushupScore2Pts();
+		calculateTotalScore2Pts();
+	});
+	
+	$("#running-score-slider").change(function() {
+		calculateRunningScore2Pts();
+		calculateTotalScore2Pts();
 	});
 
 	$(".timeLabel").remove();
@@ -65,8 +95,23 @@ $(document).on('pageinit', '#sp-page', function() {
 
 $(document).on('pageinit', '#rs-page', function() {
 	console.log("Init rs-page");
-	$(".rw-score-slider").change(function() {
-		calculateReward2Score();
+//	$(".rw-score-slider").change(function() {
+//		calculateReward2Score();
+//	});
+	
+	$("#situp-rw-slider").change(function() {
+		calculateSitupReward2Score();
+		calculateTotalReward2Score();
+	});
+	
+	$("#pushup-rw-slider").change(function() {
+		calculatePushupReward2Score();
+		calculateTotalReward2Score();
+	});
+	
+	$("#running-rw-slider").change(function() {
+		calculateRunningReward2Score();
+		calculateTotalReward2Score();
 	});
 	
 	$("#select-choice-rewards").change(function() {
@@ -76,7 +121,7 @@ $(document).on('pageinit', '#rs-page', function() {
 	$("#situp-rw-slider").on('slidestop', function(event) {
 		target = getAwardPoints($("#select-choice-rewards").val());
 		if ($("input[name*=radio-choice-a]:checked").val() == "SITUP") {
-			constantAdjustment();
+			constantAdjustment();console.log("debug")
 		} else if ($("input[name*=radio-choice-a]:checked").val() == "PUSHUP") {
 			remaining = target - SitupScore2Point(agegrouprw, situprw) - PushupScore2Point(agegrouprw, pushuprw);
 			if (remaining > 50) {
@@ -258,32 +303,56 @@ function constantAdjustment() {
 
 function calculateReward2Score() {
 	agegrouprw = getAgeGroup(parseInt($("#age-input").val()));
+	calculateSitupReward2Score();
+	calculatePushupReward2Score();
+	calculateRunningReward2Score();
+	calculateTotalReward2Score();
+}
 
+function calculateSitupReward2Score() {
 	situprw = $("#situp-rw-slider").val();
 	$("#situp-rw-pts").text(SitupScore2Point(agegrouprw, situprw));
+}
 
+function calculatePushupReward2Score() {
 	pushuprw = $("#pushup-rw-slider").val();
 	$("#pushup-rw-pts").text(PushupScore2Point(agegrouprw, pushuprw));
+}
 
+function calculateRunningReward2Score() {
 	runningrw = parseInt(1100 - $("#running-rw-slider").val());
 	$("#running-rw-pts").text(RunningScore2Point(agegrouprw, runningrw));
+}
 
+function calculateTotalReward2Score() {
 	rwtotal = parseInt(SitupScore2Point(agegrouprw, situprw)) + parseInt(PushupScore2Point(agegrouprw, pushuprw)) + parseInt(RunningScore2Point(agegrouprw, runningrw));
 	$('#rw-total').text(rwtotal);
 }
 
 function calculatePts2Score() {
 	agegroupts = getAgeGroup(parseInt($("#age-input").val()));
+	calculateSitupPts2Score();
+	calculatePushupPts2Score();
+	calculateRunningPts2Score();
+	calculateTotalPts2Score();
+}
 
+function calculateSitupPts2Score() {
 	situppts = $("#situp-pts-slider").val();
 	$("#situp-score").text(SitupPoint2Score(agegroupts, situppts));
+}
 
+function calculatePushupPts2Score() {
 	pushuppts = $("#pushup-pts-slider").val();
 	$("#pushup-score").text(PushupPoint2Score(agegroupts, pushuppts));
+}
 
+function calculateRunningPts2Score() {
 	runningpts = $("#running-pts-slider").val();
 	$("#running-score").text(secondsToTimeString(RunningPoint2Score(agegroupts, runningpts)));
+}
 
+function calculateTotalPts2Score() {
 	pstotal = parseInt(situppts) + parseInt(pushuppts) + parseInt(runningpts);
 	$('#ps-total').text(pstotal);
 
@@ -292,16 +361,27 @@ function calculatePts2Score() {
 
 function calculateScore2Pts() {
 	agegroupscore = getAgeGroup(parseInt($("#age-input").val()));
-
+	calculateSitupScore2Pts();
+	calculatePushupScore2Pts();
+	calculateRunningScore2Pts();
+	calculateTotalScore2Pts();
+}
+function calculateSitupScore2Pts() {
 	situpscore = $("#situp-score-slider").val();
 	$("#situp-pts").text(SitupScore2Point(agegroupscore, situpscore));
+}
 
+function calculatePushupScore2Pts() {
 	pushupscore = $("#pushup-score-slider").val();
 	$("#pushup-pts").text(PushupScore2Point(agegroupscore, pushupscore));
+}
 
+function calculateRunningScore2Pts() {
 	runningscore = parseInt(1100 - $("#running-score-slider").val());
 	$("#running-pts").text(RunningScore2Point(agegroupscore, runningscore));
+}
 
+function calculateTotalScore2Pts() {
 	sptotal = parseInt(SitupScore2Point(agegroupscore, situpscore)) + parseInt(PushupScore2Point(agegroupscore, pushupscore)) + parseInt(RunningScore2Point(agegroupscore, runningscore));
 	$('#sp-total').text(sptotal);
 

@@ -857,6 +857,12 @@ function RunningScore2Point(agegroup, score) {
 }
 
 function RunningPoint2Score(agegroup, point, min) {
+	if (isNaN(point) || isNaN(agegroup))
+	{
+		console.log("Nan")
+		return;
+	}
+		
 	for (var i = 1100; i >= 510; i -= 10) {
 		if (running[agegroup][i] == point)
 			return i;

@@ -852,6 +852,12 @@ function SitupScore2Point(agegroup, score) {
 }
 
 function SitupPoint2Score(agegroup, point) {
+	if (isNaN(point) || isNaN(agegroup))
+	{
+		console.log("Nan")
+		return;
+	}
+	
 	for( var i = 1; i <= 60; i++ )
 	{
 		if ( situp[agegroup][i] == point )

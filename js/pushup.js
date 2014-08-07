@@ -852,7 +852,12 @@ function PushupScore2Point(agegroup, score) {
 }
 
 function PushupPoint2Score(agegroup, point, min) {
-	console.log(point)
+	if (isNaN(point) || isNaN(agegroup))
+	{
+		console.log("Nan")
+		return;
+	}
+		
 	for (var i = 1; i <= 60; i++) {
 		if (pushup[agegroup][i] == point)
 			return i;
