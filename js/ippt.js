@@ -44,20 +44,20 @@ $(document).on('pageinit', '#home-page', function() {
 
 $(document).on('pageinit', '#ps-page', function() {
 	console.log("Init ps-page");
-//	$(".pts-score-slider").change(function() {
-//		calculatePts2Score();
-//	});
-	
+	//	$(".pts-score-slider").change(function() {
+	//		calculatePts2Score();
+	//	});
+
 	$("#situp-pts-slider").change(function() {
 		calculateSitupPts2Score();
 		calculateTotalPts2Score();
 	});
-	
+
 	$("#pushup-pts-slider").change(function() {
 		calculatePushupPts2Score();
 		calculateTotalPts2Score();
 	});
-	
+
 	$("#running-pts-slider").change(function() {
 		calculateRunningPts2Score();
 		calculateTotalPts2Score();
@@ -66,20 +66,20 @@ $(document).on('pageinit', '#ps-page', function() {
 
 $(document).on('pageinit', '#sp-page', function() {
 	console.log("Init sp-page");
-//	$(".score-pts-slider").change(function() {
-//		calculateScore2Pts();
-//	});
+	//	$(".score-pts-slider").change(function() {
+	//		calculateScore2Pts();
+	//	});
 
 	$("#situp-score-slider").change(function() {
 		calculateSitupScore2Pts();
 		calculateTotalScore2Pts();
 	});
-	
+
 	$("#pushup-score-slider").change(function() {
 		calculatePushupScore2Pts();
 		calculateTotalScore2Pts();
 	});
-	
+
 	$("#running-score-slider").change(function() {
 		calculateRunningScore2Pts();
 		calculateTotalScore2Pts();
@@ -95,25 +95,25 @@ $(document).on('pageinit', '#sp-page', function() {
 
 $(document).on('pageinit', '#rs-page', function() {
 	console.log("Init rs-page");
-//	$(".rw-score-slider").change(function() {
-//		calculateReward2Score();
-//	});
-	
+	//	$(".rw-score-slider").change(function() {
+	//		calculateReward2Score();
+	//	});
+
 	$("#situp-rw-slider").change(function() {
 		calculateSitupReward2Score();
 		calculateTotalReward2Score();
 	});
-	
+
 	$("#pushup-rw-slider").change(function() {
 		calculatePushupReward2Score();
 		calculateTotalReward2Score();
 	});
-	
+
 	$("#running-rw-slider").change(function() {
 		calculateRunningReward2Score();
 		calculateTotalReward2Score();
 	});
-	
+
 	$("#select-choice-rewards").change(function() {
 		constantAdjustment();
 	});
@@ -121,7 +121,8 @@ $(document).on('pageinit', '#rs-page', function() {
 	$("#situp-rw-slider").on('slidestop', function(event) {
 		target = getAwardPoints($("#select-choice-rewards").val());
 		if ($("input[name*=radio-choice-a]:checked").val() == "SITUP") {
-			constantAdjustment();console.log("debug")
+			constantAdjustment();
+			console.log("debug")
 		} else if ($("input[name*=radio-choice-a]:checked").val() == "PUSHUP") {
 			remaining = target - SitupScore2Point(agegrouprw, situprw) - PushupScore2Point(agegrouprw, pushuprw);
 			if (remaining > 50) {
@@ -356,7 +357,7 @@ function calculateTotalPts2Score() {
 	pstotal = parseInt(situppts) + parseInt(pushuppts) + parseInt(runningpts);
 	$('#ps-total').text(pstotal);
 
-	$('#ps-award').text(getAward(pstotal) + '\xA0\xA0\xA0' +getNextAward(pstotal));
+	$('#ps-award').text(getAward(pstotal) + '\xA0\xA0\xA0' + getNextAward(pstotal));
 }
 
 function calculateScore2Pts() {
@@ -366,6 +367,7 @@ function calculateScore2Pts() {
 	calculateRunningScore2Pts();
 	calculateTotalScore2Pts();
 }
+
 function calculateSitupScore2Pts() {
 	situpscore = $("#situp-score-slider").val();
 	$("#situp-pts").text(SitupScore2Point(agegroupscore, situpscore));
@@ -385,7 +387,7 @@ function calculateTotalScore2Pts() {
 	sptotal = parseInt(SitupScore2Point(agegroupscore, situpscore)) + parseInt(PushupScore2Point(agegroupscore, pushupscore)) + parseInt(RunningScore2Point(agegroupscore, runningscore));
 	$('#sp-total').text(sptotal);
 
-	$('#sp-award').text(getAward(sptotal) + '\xA0\xA0\xA0' +getNextAward(sptotal));
+	$('#sp-award').text(getAward(sptotal) + '\xA0\xA0\xA0' + getNextAward(sptotal));
 }
 
 function populateSitupTable() {
@@ -473,21 +475,20 @@ function getAwardPoints(award) {
 	else if (award == awards.PASSPLUS)
 		return 61;
 	else
-		return 50;
+		return 51;
 }
 
 function getNextAward(points) {
 	var more = 0;
 	var curAward = getAward(points);
-	if ( curAward === awards.GOLDPLUS )
+	if (curAward === awards.GOLDPLUS)
 		return "";
-	while ( curAward == getAward(points+more))
-	{
-		
-		more++;		
+	while (curAward == getAward(points + more)) {
+
+		more++;
 	}
-	console.log( "(" + more + " points to " + getAward(points+more) +")" );
-	return "( " + more + " points to " + getAward(points+more) +" )";
+	console.log("(" + more + " points to " + getAward(points + more) + ")");
+	return "( " + more + " points to " + getAward(points + more) + " )";
 }
 
 function secondsToTimeString(seconds) {

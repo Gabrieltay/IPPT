@@ -222,7 +222,7 @@
 				<div class="ui-grid-solo time-slider">
 					<div data-role="fieldcontain" class="running">
 						<label class="running" for="running">Timing of 2.4Km Run:</label>
-						<input type="range" name="sliderTime" id="running-score-slider" data-theme="rn" class="score-pts-slider" data-highlight="true" min="0" max="590" value="380" />
+						<input type="range" name="sliderTime" id="running-score-slider" data-theme="rn" class="score-pts-slider" data-highlight="true" min="0" max="590" step="10" value="380" />
 
 					</div>
 					<div data-role="fieldcontain">
@@ -251,11 +251,11 @@
 				<div class="ui-grid-solo">
 					<div data-role="fieldcontain">
 						<select name="select-choice-rewards" id="select-choice-rewards" data-native-menu="true" data-theme="rn">
-							<option value="GOLD PLUS">Gold Plus</option>
-							<option value="GOLD">Gold</option>
-							<option value="SILVER">Silver</option>
-							<option value="PASS PLUS">Pass Plus</option>
-							<option value="PASS">Pass</option>
+							<option value="GOLD PLUS">GOLD (Commando/Diver/Guards)</option>
+							<option value="GOLD">GOLD</option>
+							<option value="SILVER">SILVER</option>
+							<option value="PASS PLUS">PASS (Active)</option>
+							<option value="PASS">PASS (NSmen)</option>
 						</select>
 
 						<div class="situp">
@@ -282,18 +282,16 @@
 							<label class="running" for="running">
 								<input type="radio" name="radio-choice-a" data-theme="ii" id="radio-choice-1-c" value="RUNNING" />
 								Timing of 2.4Km Run:</label>
-							<input type="range" name="sliderTime" id="running-rw-slider" data-theme="rn" class="rw-score-slider" data-highlight="true" min="0" max="590" value="380" />
+							<input type="range" name="sliderTime" id="running-rw-slider" data-theme="rn" class="rw-score-slider" data-highlight="true" min="0" max="590" value="380" step="10"/>
 
 							<label class="running float-left" for="pushup-pts">Points Achieved:  &nbsp; &nbsp; &nbsp;</label>
 							<label class="running" name="running-rw-pts" id="running-rw-pts">0</label>
 						</div>
-					</div>
-				</div>
 
-				<div class="ui-grid-solo">
-					<div data-role="fieldcontain" class="result">
-						<label class="float-left">Total Points: &nbsp; &nbsp; &nbsp; </label>
-						<label id="rw-total">100</label>
+						<div class="result">
+							<label class="float-left">Total Points: &nbsp; &nbsp; &nbsp; </label>
+							<label id="rw-total">100</label>
+						</div>
 					</div>
 				</div>
 			</div>
