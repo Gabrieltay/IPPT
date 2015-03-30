@@ -451,15 +451,15 @@ function getAgeGroup(age) {
 }
 
 function getAward(points) {
-	if (points >= 85)
+	if (points >= 90)
 		return awards.GOLDPLUS;
-	else if (points > 80)
+	else if (points >= 85)
 		return awards.GOLD;
-	else if (points > 70)
+	else if (points >= 75)
 		return awards.SILVER;
-	else if (points > 60)
+	else if (points >= 61)
 		return awards.PASSPLUS;
-	else if (points > 50)
+	else if (points >= 51)
 		return awards.PASS;
 	else
 		return awards.FAIL;
@@ -467,11 +467,11 @@ function getAward(points) {
 
 function getAwardPoints(award) {
 	if (award == awards.GOLDPLUS)
-		return 85;
+		return 90;
 	else if (award == awards.GOLD)
-		return 81;
+		return 85;
 	else if (award == awards.SILVER)
-		return 71;
+		return 75;
 	else if (award == awards.PASSPLUS)
 		return 61;
 	else
