@@ -29,6 +29,9 @@ var runningrwpts = 0;
 var rwtotal = 0;
 var target = 0;
 var remaining = 0;
+var nextsituprw = 0;
+var nextpushuprw = 0;
+var nextrunningrw = 0;
 
 var agegroupsum = 0;
 $(document).on('pageinit', '#home-page', function() {
@@ -312,17 +315,38 @@ function calculateReward2Score() {
 
 function calculateSitupReward2Score() {
 	situprw = $("#situp-rw-slider").val();
-	$("#situp-rw-pts").text(SitupScore2Point(agegrouprw, situprw));
+	situprwpts = SitupScore2Point(agegrouprw, situprw);
+	if ( situprwpts == 25 )
+		$("#situp-rw-pts").text(situprwpts);
+	else
+	{
+		nextsituprw = SitupPoint2Score(agegrouprw, situprwpts+1);
+		$("#situp-rw-pts").text(situprwpts + '\xA0\xA0\xA0' + "( " + (nextsituprw -  situprw) +" More Situps! )");
+	}
 }
 
 function calculatePushupReward2Score() {
 	pushuprw = $("#pushup-rw-slider").val();
-	$("#pushup-rw-pts").text(PushupScore2Point(agegrouprw, pushuprw));
+	pushuprwpts = PushupScore2Point(agegrouprw, pushuprw);
+	if ( pushuprwpts == 25 )
+		$("#pushup-rw-pts").text(pushuprwpts);
+	else
+	{
+		nextpushuprw = PushupPoint2Score(agegrouprw, pushuprwpts+1);
+		$("#pushup-rw-pts").text(pushuprwpts + '\xA0\xA0\xA0' + "( " + (nextpushuprw -  pushuprw) +" More Pushups! )");
+	}
 }
 
 function calculateRunningReward2Score() {
 	runningrw = parseInt(1100 - $("#running-rw-slider").val());
-	$("#running-rw-pts").text(RunningScore2Point(agegrouprw, runningrw));
+	runningrwpts = RunningScore2Point(agegrouprw, runningrw);
+	if ( runningrwpts == 50 )
+		$("#running-rw-pts").text(runningrwpts);
+	else
+	{
+		nextrunningrw = RunningPoint2Score(agegrouprw, runningrwpts+1);
+		$("#running-rw-pts").text(runningrwpts + '\xA0\xA0\xA0' + "( " + (runningrw - nextrunningrw) +" Sec Faster! )");
+	}
 }
 
 function calculateTotalReward2Score() {
@@ -340,7 +364,8 @@ function calculatePts2Score() {
 
 function calculateSitupPts2Score() {
 	situppts = $("#situp-pts-slider").val();
-	$("#situp-score").text(SitupPoint2Score(agegroupts, situppts));
+	situprwpts = SitupPoint2Score(agegroupts, situppts);
+	$("#situp-score").text(situprwpts);
 }
 
 function calculatePushupPts2Score() {
@@ -370,17 +395,38 @@ function calculateScore2Pts() {
 
 function calculateSitupScore2Pts() {
 	situpscore = $("#situp-score-slider").val();
-	$("#situp-pts").text(SitupScore2Point(agegroupscore, situpscore));
+	situppts = SitupScore2Point(agegroupscore, situpscore);
+	if ( situppts == 25 )
+		$("#situp-pts").text(situppts);
+	else
+	{
+		nextsituprw = SitupPoint2Score(agegroupscore, situppts+1);
+		$("#situp-pts").text(situppts + '\xA0\xA0\xA0' + "( " + (nextsituprw -  situpscore) +" More Situps! )");
+	}
 }
 
 function calculatePushupScore2Pts() {
 	pushupscore = $("#pushup-score-slider").val();
-	$("#pushup-pts").text(PushupScore2Point(agegroupscore, pushupscore));
+	pushuppts = PushupScore2Point(agegroupscore, pushupscore);
+	if ( pushuppts == 25 )
+		$("#pushup-pts").text(pushuppts);
+	else
+	{
+		nextpushuprw = PushupPoint2Score(agegroupscore, pushuppts+1);
+		$("#pushup-pts").text(pushuppts + '\xA0\xA0\xA0' + "( " + (nextpushuprw -  pushupscore) +" More Pushups! )");
+	}
 }
 
 function calculateRunningScore2Pts() {
 	runningscore = parseInt(1100 - $("#running-score-slider").val());
-	$("#running-pts").text(RunningScore2Point(agegroupscore, runningscore));
+	runningpts = RunningScore2Point(agegroupscore, runningscore);
+	if ( runningpts == 50 )
+		$("#running-pts").text(runningpts);
+	else
+	{
+		nextrunningrw = RunningPoint2Score(agegroupscore, runningpts+1);
+		$("#running-pts").text(runningpts + '\xA0\xA0\xA0' + "( " + (runningscore - nextrunningrw) +" Sec Faster! )");
+	}
 }
 
 function calculateTotalScore2Pts() {
